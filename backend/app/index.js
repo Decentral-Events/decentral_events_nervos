@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 // connect to database and start the server
 sequelize.authenticate().then(() => {
     console.log("Connection has been established successfully.")
-    return sequelize.sync();
+    return sequelize.sync({ force: true });
 }).then(() => {
     console.log("Synced models with database");
     web3listener();
