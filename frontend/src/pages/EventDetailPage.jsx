@@ -19,12 +19,17 @@ function EventDetailPage() {
     const [eventPlannerContract, setEventPlannerContract] = useState(null);
     const [isReserved, setIsReserved] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         (async () => {
-            const { data: { event } } = await axios.get(`${window.server}/event/${eventId}`);
-            console.log(event);
-            setEvent(event);
+            try {
+                const { data: { event } } = await axios.get(`${window.server}/event/${eventId}`);
+                setEvent(event);
+            } catch (err) {
+                console.log("event");
+                setError("Event not found");
+            }
         })();
     }, [eventId]);
 
@@ -53,9 +58,10 @@ function EventDetailPage() {
             return;
         }
         (async () => {
+            console.log("Hello")
             const { data: { isReserved } } = await axios.get(`${window.server}/reservation/event/${event.id}`, { headers: { 'Authorization': `Bearer ${auth.token}` } });
-            console.log(isReserved);
             setIsReserved(isReserved);
+
         })();
     }, [event, auth.token, auth.isLoggedIn]);
 
@@ -84,6 +90,12 @@ function EventDetailPage() {
         await tx.wait();
         setLoading(false);
     }
+
+    if (error) return <main>
+        <div class="err-display-cont no-eve-cont">
+            <span class="err-1">Event not found</span>
+        </div>
+    </main>;
 
     if (!event) return <>Loading...</>;
 
