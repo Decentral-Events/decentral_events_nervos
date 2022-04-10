@@ -66,7 +66,7 @@ function Step2({ eventId }) {
                                 <button onClick={() => removeFile(i)} style={{ position: 'absolute', top: 0, right: 0, color: 'white', background: 'red', borderRadius: '50%', padding: '2px 5px', border: 'none' }}>
                                     x
                                 </button>
-                                <img src={file.url} style={{ width: '100px' }} alt="uploaded image" />
+                                <img src={file.url} style={{ width: '100px' }} alt="uploaded" />
                             </div>
                         ))}
                     </div>

@@ -8,7 +8,7 @@ import { ethers } from 'ethers';
 
 function OngoingEvents() {
     const now = new Date();
-    const selectedDate = { date: now.getDate(), month: now.getMonth(), year: now.getFullYear() };
+    const [selectedDate] = useState({ date: now.getDate(), month: now.getMonth(), year: now.getFullYear() });
     const [events, setEvents] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
