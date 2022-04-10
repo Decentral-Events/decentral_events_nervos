@@ -12,7 +12,7 @@ Event.init({
         type: DataTypes.STRING
     },
     description: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     startTime: {
         type: DataTypes.INTEGER
