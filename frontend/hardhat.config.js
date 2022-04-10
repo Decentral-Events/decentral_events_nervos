@@ -1,4 +1,6 @@
+require('dotenv').config();
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -22,6 +24,14 @@ module.exports = {
     localhost: {
       url: "http://127.0.0.1:8545",
       chainId: 1337
+    },
+    matic: {
+      url: "https://polygon-rpc.com",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 137
     }
-  }
+  },
+  etherscan: {
+    apiKey: process.env.POLYGONSCAN_API_KEY
+  },
 };

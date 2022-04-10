@@ -1,4 +1,4 @@
-import eventPlannerContractABI from "./abi/EventPlanner.json";
+import eventPlannerContractABI from "./abi/EventPlanner.json" assert { type: 'json' };
 import ethers from "ethers";
 import sequelize from "./database.js";
 console.log(sequelize.models);
