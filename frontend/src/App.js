@@ -84,7 +84,7 @@ export default class App extends Component {
     });
     console.log((await provider.getNetwork()).chainId)
     if ((await provider.getNetwork()).chainId !== EventPlannerContract.chainId) {
-      this.setState({ error: `Please connect to Polygon Network` });
+      this.setState({ error: `Please connect to Polygon Test Network` });
       return;
     }
     // reload if logged in and account changed 

@@ -5,7 +5,7 @@ function SwtichNetworkButton() {
                 // check if the chain to connect to is installed
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0x89' }], // chainId must be in hexadecimal numbers
+                    params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
                 });
             } catch (error) {
                 // This error code indicates that the chain has not been added to MetaMask
@@ -16,15 +16,15 @@ function SwtichNetworkButton() {
                             method: 'wallet_addEthereumChain',
                             params: [
                                 {
-                                    chainId: '0x89',
-                                    chainName: "Polygon Mainnet",
-                                    rpcUrls: ['https://polygon-rpc.com/'],
+                                    chainId: '0x13881',
+                                    chainName: "Polygon Mumbai Testnet",
+                                    rpcUrls: ['https://rpc-mumbai.matic.today'],
                                     nativeCurrency: {
                                         name: "Matic",
                                         symbol: "MATIC",
                                         decimals: 18
                                     },
-                                    blockExplorerUrls: ["https://polygonscan.com/"]
+                                    blockExplorerUrls: ["https://mumbai.polygonscan.com/"]
                                 },
                             ],
                         });
