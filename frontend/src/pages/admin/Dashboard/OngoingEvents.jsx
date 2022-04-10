@@ -5,6 +5,7 @@ import Paginator from "../../../components/Paginator";
 import { AuthContext } from "../../../context";
 import EventPlannerContract from "../../../abi/EventPlanner.json";
 import { ethers } from 'ethers';
+import Loading from "../../../components/Loading";
 
 function OngoingEvents() {
     const now = new Date();
@@ -16,6 +17,7 @@ function OngoingEvents() {
     const [username, setUsername] = useState("");
     const [eventPlannerContract, setEventPlannerContract] = useState(null);
     const auth = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -47,18 +49,22 @@ function OngoingEvents() {
             return;
         }
         try {
-            await eventPlannerContract.markAttendance(selectedEvent, user.address);
+            const tx = await eventPlannerContract.markAttendance(selectedEvent, user.address);
+            setLoading(true);
+            await tx.wait();
         } catch (err) {
             console.log(err);
             alert("Error in marking attendence");
             return;
         }
+        setLoading(false);
         setUsername("");
         setSelectedEvent(-1);
     }
 
     return <>
         <div className="container-modifier">
+            {loading && <Loading />}
             <div className="all-events-cont all-events-cont-full">
                 {events.map(event => <EventCard
                     key={event.id}

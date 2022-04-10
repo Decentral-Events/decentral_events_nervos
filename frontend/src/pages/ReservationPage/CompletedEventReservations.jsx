@@ -5,6 +5,7 @@ import Paginator from "../../components/Paginator";
 import { AuthContext } from "../../context";
 import EventPlannerContract from "../../abi/EventPlanner.json";
 import { ethers } from "ethers";
+import Loading from "../../components/Loading";
 
 function CompletedEventReservations() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -12,6 +13,7 @@ function CompletedEventReservations() {
     const auth = useContext(AuthContext);
     const [reservations, setReservations] = useState([]);
     const [eventPlannerContract, setEventPlannerContract] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!auth.isLoggedIn) return;
@@ -36,11 +38,15 @@ function CompletedEventReservations() {
     }, [auth.signer]);
 
     async function unstake(eventId) {
-        await eventPlannerContract.unstake(eventId);
+        const tx = await eventPlannerContract.unstake(eventId);
+        setLoading(true);
+        await tx.wait();
+        setLoading(false);
         setReservations(reservations.map(reservation => reservation.Event.id === eventId ? { ...reservation, unstaked: true } : reservation));
     }
 
     return <div className="all-events-status-cont">
+        {loading && <Loading />}
         {reservations.map(reservation => (
             reservation.unstaked
                 ? <EventCard event={reservation.Event} />

@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import EventPlannerContract from '../../../abi/EventPlanner.json';
 import { AuthContext } from '../../../context';
 import DateTimePicker from 'react-datetime-picker';
+import Loading from '../../../components/Loading';
 
 function Step1({ done }) {
     const [name, setName] = useState("");
@@ -15,6 +16,7 @@ function Step1({ done }) {
     const auth = useContext(AuthContext);
     const [eventPlannerContract, setEventPlannerContract] = useState(null);
     const { signer } = auth;
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setEventPlannerContract(new ethers.Contract(EventPlannerContract.address, EventPlannerContract.abi, signer));
@@ -39,11 +41,14 @@ function Step1({ done }) {
             maxBookings
         );
         console.log(event);
+        setLoading(true);
         const { events } = await event.wait(1);
+        setLoading(false);
         done(parseInt(events[0].args.eventId));
     }
 
     return <form onSubmit={submit}>
+        {loading && <Loading />}
         <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="" style={{ justifyItems: 'center', display: 'flex', flexDirection: 'column', background: 'white', padding: '20px', borderRadius: '20px', marginTop: '30px' }}>
                 <div className="col-span-6 form-group">

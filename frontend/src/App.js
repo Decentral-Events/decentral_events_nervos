@@ -116,6 +116,7 @@ export default class App extends Component {
           setSigner: (signer) => { this.setState({ signer }) },
           setLoginData: ({ user, isLoggedIn, signer, token, expireTimeStamp }) => { this.setState({ user, isLoggedIn, signer, token, expireTimeStamp }) }
         }}>
+          {/* <Loading></Loading> */}
           <Header provider={provider} />
           <Navbar />
           <Routes>

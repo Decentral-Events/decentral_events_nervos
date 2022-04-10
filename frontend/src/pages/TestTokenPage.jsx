@@ -2,16 +2,21 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context";
 import TokenContract from "../abi/Token.json";
 import { ethers } from "ethers";
+import Loading from "../components/Loading";
 
 function TestTokenPage() {
     const [tokens, setTokens] = useState(0);
     const [tokenContract, setTokenContract] = useState(null);
     const auth = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
 
     async function submit(e) {
         e.preventDefault();
         if (!tokens) return;
-        await tokenContract.mint(ethers.utils.parseEther(tokens));
+        const tx = await tokenContract.mint(ethers.utils.parseEther(tokens));
+        setLoading(true);
+        await tx.wait();
+        setLoading(false);
         alert("Tokens Minted Successfully");
     }
 
@@ -25,6 +30,7 @@ function TestTokenPage() {
 
 
     return <main className="signup-main">
+        {loading && <Loading />}
         <div className="signup-container">
             <div className="form-container">
                 <div className="event-head-cont">

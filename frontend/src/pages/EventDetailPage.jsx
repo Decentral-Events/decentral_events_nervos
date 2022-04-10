@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import TokenContract from "../abi/Token.json";
 import EventPlannerContract from "../abi/EventPlanner.json";
 import { getDateTimeString, getUrl } from '../helpers';
+import Loading from "../components/Loading";
 
 function EventDetailPage() {
     const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,8 @@ function EventDetailPage() {
     const [tokenContract, setTokenContract] = useState(null);
     const [eventPlannerContract, setEventPlannerContract] = useState(null);
     const [isReserved, setIsReserved] = useState(false);
-    console.log(auth)
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         (async () => {
             const { data: { event } } = await axios.get(`${window.server}/event/${eventId}`);
@@ -59,9 +61,12 @@ function EventDetailPage() {
 
     async function stake() {
         if (!signer) return;
-        await eventPlannerContract.bookTicket(event.id);
+        const tx = await eventPlannerContract.bookTicket(event.id);
         setIsReserved(true);
         setShowModal(false);
+        setLoading(true);
+        await tx.wait();
+        setLoading(false);
     }
 
     const enoughApproved = event && ethers.BigNumber.from(event.tokensRequired).lte(approvedTokens);
@@ -74,7 +79,10 @@ function EventDetailPage() {
 
     async function approve() {
         if (!signer) return;
-        await tokenContract.approve(EventPlannerContract.address, event.tokensRequired);
+        const tx = await tokenContract.approve(EventPlannerContract.address, event.tokensRequired);
+        setLoading(true);
+        await tx.wait();
+        setLoading(false);
     }
 
     if (!event) return <>Loading...</>;
@@ -85,6 +93,7 @@ function EventDetailPage() {
                 <span>&larr; &nbsp; Back</span>
             </span>
         </Link>
+        {loading && <Loading />}
         <div className="curr-event-display-cont">
             <div className="curr-eve-img-cont">
                 <img src={getUrl(event.images[0].path)} className="curr-eve-img" alt="" />

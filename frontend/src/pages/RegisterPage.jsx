@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 import { AuthContext } from "../context";
 
 function RegisterPage({ provider }) {
@@ -8,6 +9,7 @@ function RegisterPage({ provider }) {
     const [image, setImage] = useState();
     const [username, setUsername] = useState("");
     const auth = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     async function submit(e) {
@@ -15,28 +17,34 @@ function RegisterPage({ provider }) {
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         const address = await signer.getAddress();
-        const { data: { message, registered } } = await axios.get(`${window.server}/auth/get-nonce-message/${address}`);
-        const signature = await signer.signMessage(message);
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("image", image);
-        formData.append("username", username);
-        formData.append("address", address);
-        formData.append("signature", signature);
-        const { data: { user, token } } = registered
-            ? await axios.post(`${window.server}/auth/login`, {
-                address,
-                signature
-            })
-            : await axios.post(`${window.server}/auth/register`, formData);
-        auth.setLoginData({
-            user,
-            signer,
-            token,
-            isLoggedIn: true,
-            expireTimeStamp: 0
-        });
-        navigate("/");
+        setLoading(true);
+        try {
+            const { data: { message, registered } } = await axios.get(`${window.server}/auth/get-nonce-message/${address}`);
+            const signature = await signer.signMessage(message);
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("image", image);
+            formData.append("username", username);
+            formData.append("address", address);
+            formData.append("signature", signature);
+            const { data: { user, token } } = registered
+                ? await axios.post(`${window.server}/auth/login`, {
+                    address,
+                    signature
+                })
+                : await axios.post(`${window.server}/auth/register`, formData);
+            auth.setLoginData({
+                user,
+                signer,
+                token,
+                isLoggedIn: true,
+                expireTimeStamp: 0
+            });
+            navigate("/");
+        } catch (err) {
+            console.log(err);
+        }
+        setLoading(false);
     }
 
     if (auth.isLoggedIn) {
@@ -44,6 +52,7 @@ function RegisterPage({ provider }) {
     }
 
     return <main className="signup-main">
+        {loading && <Loading />}
         <div className="signup-container">
             <div className="form-container">
                 <div className="event-head-cont">
