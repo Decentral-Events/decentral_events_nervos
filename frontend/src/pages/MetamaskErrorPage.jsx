@@ -4,11 +4,11 @@ function MetamaskErrorPage({ error }) {
     return <><header class="err-header">
         <div class="header-logo-cont err-header-align">
             <div class="header-img-cont">
-                <a href="#">
+                <span>
                     <img src="/Images/logo.png" alt="" class="header-logo"
-                    /></a>
+                    /></span>
             </div>
-            <a href="#" class="logo-heading">Decentral Events</a>
+            <span class="logo-heading">Decentral Events</span>
         </div>
     </header>
         <main class="err-main">

@@ -21,7 +21,6 @@ import CreateEvent from './pages/admin/CreateEvent/CreateEvent';
 import DraftEvents from './pages/admin/DraftEvents';
 import EditEvent from './pages/admin/EditEvent';
 import TestTokenPage from './pages/TestTokenPage';
-import SwtichNetworkButton from './components/SwitchNetworkButton';
 import MetamaskErrorPage from './pages/MetamaskErrorPage';
 
 
