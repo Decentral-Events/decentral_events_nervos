@@ -16,8 +16,8 @@ router.get('/event/:id', onlyAuthorized, async (req, res) => {
     res.json({
         isReserved: Boolean(await Reservation.findOne({
             where: {
-                eventId: id,
-                userId: user.id
+                event_id: id,
+                user_id: user.id
             }
         }))
     });
@@ -29,7 +29,7 @@ router.get('/past', onlyAuthorized, paginate(10), validate, async (req, res) => 
     const now = new Date().getTime() / 1000 | 0;
     const total = await Reservation.count({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -45,7 +45,7 @@ router.get('/past', onlyAuthorized, paginate(10), validate, async (req, res) => 
     const totalPages = Math.ceil(total / limit);
     const reservations = await Reservation.findAll({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -70,7 +70,7 @@ router.get('/ongoing', onlyAuthorized, paginate(10), validate, async (req, res) 
     const now = new Date().getTime() / 1000 | 0;
     const total = await Reservation.count({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -89,7 +89,7 @@ router.get('/ongoing', onlyAuthorized, paginate(10), validate, async (req, res) 
     const totalPages = Math.ceil(total / limit);
     const reservations = await Reservation.findAll({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -118,7 +118,7 @@ router.get('/future', onlyAuthorized, paginate(10), validate, async (req, res) =
     const now = new Date().getTime() / 1000 | 0;
     const total = await Reservation.count({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -134,7 +134,7 @@ router.get('/future', onlyAuthorized, paginate(10), validate, async (req, res) =
     const totalPages = Math.ceil(total / limit);
     const reservations = await Reservation.findAll({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: false
         },
         include: [{
@@ -159,7 +159,7 @@ router.get('/cancelled', onlyAuthorized, paginate(10), validate, async (req, res
     const now = new Date().getTime() / 1000 | 0;
     const total = await Reservation.count({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: true
         },
         include: [{
@@ -170,7 +170,7 @@ router.get('/cancelled', onlyAuthorized, paginate(10), validate, async (req, res
     const totalPages = Math.ceil(total / limit);
     const reservations = await Reservation.findAll({
         where: {
-            userId: user.id,
+            user_id: user.id,
             cancelled: true
         },
         include: [{
