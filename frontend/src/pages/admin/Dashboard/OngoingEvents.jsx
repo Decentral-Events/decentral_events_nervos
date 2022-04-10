@@ -63,8 +63,8 @@ function OngoingEvents() {
     }
 
     return <>
+        {loading && <Loading />}
         <div className="container-modifier">
-            {loading && <Loading />}
             <div className="all-events-cont all-events-cont-full">
                 {events.map(event => <EventCard
                     key={event.id}

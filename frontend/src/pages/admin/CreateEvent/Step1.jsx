@@ -47,105 +47,107 @@ function Step1({ done }) {
         done(parseInt(events[0].args.eventId));
     }
 
-    return <form onSubmit={submit}>
+    return <>
         {loading && <Loading />}
-        <div className="shadow sm:rounded-md sm:overflow-hidden">
-            <div className="" style={{ justifyItems: 'center', display: 'flex', flexDirection: 'column', background: 'white', padding: '20px', borderRadius: '20px', marginTop: '30px' }}>
-                <div className="col-span-6 form-group">
-                    <label htmlFor="first-name" className="form-label block text-sm font-medium text-gray-700">
-                        Event Name
-                    </label>
-                    <input
-                        type="text"
-                        name="first-name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        id="first-name"
-                        required
-                        className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    />
-                </div>
-                <div className="grid-2 grid-cols-6 gap-6">
-
-                    <div className="col-span-6 sm:col-span-3 form-group">
+        <form onSubmit={submit}>
+            <div className="shadow sm:rounded-md sm:overflow-hidden">
+                <div className="" style={{ justifyItems: 'center', display: 'flex', flexDirection: 'column', background: 'white', padding: '20px', borderRadius: '20px', marginTop: '30px' }}>
+                    <div className="col-span-6 form-group">
                         <label htmlFor="first-name" className="form-label block text-sm font-medium text-gray-700">
-                            Start Time
-                        </label>
-                        <DateTimePicker onChange={setStartTime} value={startTime} />
-                        {/* <DateTimePickerComponent onChange={(e) => setStartTime(e.value)} /> */}
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3 form-group">
-                        <label htmlFor="last-name" className="form-label block text-sm font-medium text-gray-700">
-                            End Time
-                        </label>
-                        <DateTimePicker onChange={setEndTime} value={endTime} />
-                        {/* <DateTimePickerComponent onChange={(e) => setEndTime(e.value)} /> */}
-                    </div>
-                </div>
-                <div className="grid-3 grid-cols-6 gap-6">
-                    <div className="col-span-6 sm:col-span-6 lg:col-span-2 form-group">
-                        <label htmlFor="tokensRequired" className="form-label block text-sm font-medium text-gray-700">
-                            Tokens Required
-                        </label>
-                        <input
-                            type="number"
-                            name="tokensRequired"
-                            id="tokensRequired"
-                            required
-                            value={tokensRequired}
-                            onChange={(e) => setTokensRequired(e.target.value || 0)}
-                            className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3 lg:col-span-2 form-group">
-                        <label htmlFor="validationsRequired" className="form-label block text-sm font-medium text-gray-700">
-                            Validations Required
-                        </label>
-                        <input
-                            type="number"
-                            name="validationsRequired"
-                            id="validationsRequired"
-                            required
-                            value={validationsRequired}
-                            onChange={(e) => setValidationsRequired(parseInt(e.target.value || 0))}
-                            className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3 lg:col-span-2 form-group">
-                        <label htmlFor="maxBookings" className="form-label block text-sm font-medium text-gray-700">
-                            Max Bookings
+                            Event Name
                         </label>
                         <input
                             type="text"
-                            name="maxBookings"
+                            name="first-name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            id="first-name"
                             required
-                            id="maxBookings"
-                            value={maxBookings}
-                            onChange={(e) => setMaxBookings(parseInt(e.target.value || 0))}
                             className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                         />
                     </div>
-                </div>
-                <div className="" style={{ justifyContent: 'center', display: 'flex', background: 'white', padding: '20px', borderRadius: '20px' }}>
+                    <div className="grid-2 grid-cols-6 gap-6">
 
-                    <button
-                        style={{ display: 'inline-block' }}
-                        type="submit"
-                        disabled={!isValid}
-                        className={(isValid ? "" : "pop-btn-disable") + " btn eve-sts-btn create-acc-btn btn-for-events"}
-                    >
-                        <span className='btn-event cre-acc-btn-txt btn-visible'>
+                        <div className="col-span-6 sm:col-span-3 form-group">
+                            <label htmlFor="first-name" className="form-label block text-sm font-medium text-gray-700">
+                                Start Time
+                            </label>
+                            <DateTimePicker onChange={setStartTime} value={startTime} />
+                            {/* <DateTimePickerComponent onChange={(e) => setStartTime(e.value)} /> */}
+                        </div>
 
-                            Create
-                        </span>
-                    </button>
+                        <div className="col-span-6 sm:col-span-3 form-group">
+                            <label htmlFor="last-name" className="form-label block text-sm font-medium text-gray-700">
+                                End Time
+                            </label>
+                            <DateTimePicker onChange={setEndTime} value={endTime} />
+                            {/* <DateTimePickerComponent onChange={(e) => setEndTime(e.value)} /> */}
+                        </div>
+                    </div>
+                    <div className="grid-3 grid-cols-6 gap-6">
+                        <div className="col-span-6 sm:col-span-6 lg:col-span-2 form-group">
+                            <label htmlFor="tokensRequired" className="form-label block text-sm font-medium text-gray-700">
+                                Tokens Required
+                            </label>
+                            <input
+                                type="number"
+                                name="tokensRequired"
+                                id="tokensRequired"
+                                required
+                                value={tokensRequired}
+                                onChange={(e) => setTokensRequired(e.target.value || 0)}
+                                className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2 form-group">
+                            <label htmlFor="validationsRequired" className="form-label block text-sm font-medium text-gray-700">
+                                Validations Required
+                            </label>
+                            <input
+                                type="number"
+                                name="validationsRequired"
+                                id="validationsRequired"
+                                required
+                                value={validationsRequired}
+                                onChange={(e) => setValidationsRequired(parseInt(e.target.value || 0))}
+                                className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2 form-group">
+                            <label htmlFor="maxBookings" className="form-label block text-sm font-medium text-gray-700">
+                                Max Bookings
+                            </label>
+                            <input
+                                type="text"
+                                name="maxBookings"
+                                required
+                                id="maxBookings"
+                                value={maxBookings}
+                                onChange={(e) => setMaxBookings(parseInt(e.target.value || 0))}
+                                className="form-input mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+                    </div>
+                    <div className="" style={{ justifyContent: 'center', display: 'flex', background: 'white', padding: '20px', borderRadius: '20px' }}>
+
+                        <button
+                            style={{ display: 'inline-block' }}
+                            type="submit"
+                            disabled={!isValid}
+                            className={(isValid ? "" : "pop-btn-disable") + " btn eve-sts-btn create-acc-btn btn-for-events"}
+                        >
+                            <span className='btn-event cre-acc-btn-txt btn-visible'>
+
+                                Create
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>;
+        </form>
+    </>
 }
 
 export default Step1;

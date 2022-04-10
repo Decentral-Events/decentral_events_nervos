@@ -51,68 +51,70 @@ function RegisterPage({ provider }) {
         return <Navigate to="/" />;
     }
 
-    return <main className="signup-main">
+    return <>
         {loading && <Loading />}
-        <div className="signup-container">
-            <div className="form-container">
-                <div className="event-head-cont">
-                    <h2 className="features-head event-head">Create Account</h2>
-                </div>
-                <form onSubmit={submit} className="form">
-                    <div className="form-ele-cont">
-                        <label className="form-label" for="full-name"> Full Name </label>
-                        <input
-                            type="text"
-                            name="Full Name"
-                            placeholder="Jonas Smith"
-                            id="full-name"
-                            required
-                            className="form-input"
-                            value={name} onChange={(e) => setName(e.target.value)}
-                        />
+        <main className="signup-main">
+            <div className="signup-container">
+                <div className="form-container">
+                    <div className="event-head-cont">
+                        <h2 className="features-head event-head">Create Account</h2>
                     </div>
-                    <div className="form-ele-cont">
-                        <label className="form-label" for="user-name"> User Name </label>
+                    <form onSubmit={submit} className="form">
+                        <div className="form-ele-cont">
+                            <label className="form-label" for="full-name"> Full Name </label>
+                            <input
+                                type="text"
+                                name="Full Name"
+                                placeholder="Jonas Smith"
+                                id="full-name"
+                                required
+                                className="form-input"
+                                value={name} onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-ele-cont">
+                            <label className="form-label" for="user-name"> User Name </label>
+                            <input
+                                type="text"
+                                name="User Name"
+                                placeholder="Arvi_Acker"
+                                id="user-name"
+                                required
+                                className="form-input"
+                                value={username} onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
                         <input
-                            type="text"
-                            name="User Name"
-                            placeholder="Arvi_Acker"
-                            id="user-name"
+                            name="image"
+                            id="image"
+                            accept=".jpg,.png"
+                            type="file"
                             required
-                            className="form-input"
-                            value={username} onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </div>
-                    <input
-                        name="image"
-                        id="image"
-                        accept=".jpg,.png"
-                        type="file"
-                        required
-                        hidden
-                        onChange={(e) => setImage(e.target.files[0])} />
-                    <div className="picture-form-cont">
-                        <span className="form-fp-head form-label">Profile Picture</span>
-                        <div className="flex">
-                            <button onClick={() => document.getElementById("image").click()} className="btn eve-stake-btn">
-                                <span className="btn-event btn-visible stake-btn"> Choose File </span>
-                            </button>
-                            <div style={{ marginLeft: "10px", display: "inline-block", fontSize: "1.2rem" }}>
-                                {image && image.name}
+                            hidden
+                            onChange={(e) => setImage(e.target.files[0])} />
+                        <div className="picture-form-cont">
+                            <span className="form-fp-head form-label">Profile Picture</span>
+                            <div className="flex">
+                                <button onClick={() => document.getElementById("image").click()} className="btn eve-stake-btn">
+                                    <span className="btn-event btn-visible stake-btn"> Choose File </span>
+                                </button>
+                                <div style={{ marginLeft: "10px", display: "inline-block", fontSize: "1.2rem" }}>
+                                    {image && image.name}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="create-acc-btn-cont">
-                        <button type="submit" className="btn eve-sts-btn create-acc-btn btn-for-events">
-                            <span className="btn-event cre-acc-btn-txt btn-visible">
-                                Create Account
-                            </span>
-                        </button>
-                    </div>
-                </form>
+                        <div className="create-acc-btn-cont">
+                            <button type="submit" className="btn eve-sts-btn create-acc-btn btn-for-events">
+                                <span className="btn-event cre-acc-btn-txt btn-visible">
+                                    Create Account
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </main>;
+        </main>
+    </>
 }
 
 export default RegisterPage;

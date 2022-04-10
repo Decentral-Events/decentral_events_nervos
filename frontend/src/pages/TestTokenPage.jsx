@@ -29,37 +29,39 @@ function TestTokenPage() {
     }, [auth.signer]);
 
 
-    return <main className="signup-main">
+    return <>
         {loading && <Loading />}
-        <div className="signup-container">
-            <div className="form-container">
-                <div className="event-head-cont">
-                    <h2 className="features-head event-head">Mint Test Tokens</h2>
+        <main className="signup-main">
+            <div className="signup-container">
+                <div className="form-container">
+                    <div className="event-head-cont">
+                        <h2 className="features-head event-head">Mint Test Tokens</h2>
+                    </div>
+                    <form onSubmit={submit} className="form">
+                        <div className="form-ele-cont">
+                            <label className="form-label" for="tokens"> Tokens </label>
+                            <input
+                                type="number"
+                                value={tokens}
+                                onChange={(e) => setTokens(e.target.value)}
+                                placeholder="0"
+                                id="tokens"
+                                required
+                                className="form-input"
+                            />
+                        </div>
+                        <div className="create-acc-btn-cont">
+                            <button type="submit" className="btn eve-sts-btn create-acc-btn btn-for-events">
+                                <span className="btn-event cre-acc-btn-txt btn-visible">
+                                    Submit
+                                </span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form onSubmit={submit} className="form">
-                    <div className="form-ele-cont">
-                        <label className="form-label" for="tokens"> Tokens </label>
-                        <input
-                            type="number"
-                            value={tokens}
-                            onChange={(e) => setTokens(e.target.value)}
-                            placeholder="0"
-                            id="tokens"
-                            required
-                            className="form-input"
-                        />
-                    </div>
-                    <div className="create-acc-btn-cont">
-                        <button type="submit" className="btn eve-sts-btn create-acc-btn btn-for-events">
-                            <span className="btn-event cre-acc-btn-txt btn-visible">
-                                Submit
-                            </span>
-                        </button>
-                    </div>
-                </form>
             </div>
-        </div>
-    </main>;
+        </main>
+    </>
 }
 
 export default TestTokenPage;
