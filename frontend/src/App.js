@@ -21,6 +21,7 @@ import CreateEvent from './pages/admin/CreateEvent/CreateEvent';
 import DraftEvents from './pages/admin/DraftEvents';
 import EditEvent from './pages/admin/EditEvent';
 import TestTokenPage from './pages/TestTokenPage';
+import SwtichNetworkButton from './components/SwitchNetworkButton';
 
 
 export default class App extends Component {
@@ -95,8 +96,11 @@ export default class App extends Component {
 
   render() {
     const { error, provider, isLoggedIn, user, token, expireTimeStamp, signer } = this.state;
-    if (error)
+    if (error) {
+      if (error !== 'Please install/update Metamask')
+        return <div>{error} <SwtichNetworkButton /></div>
       return <div>{error}</div>;
+    }
 
     if (!provider)
       return <>Loading...</>;
