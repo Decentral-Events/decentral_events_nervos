@@ -22,7 +22,7 @@ function Paginator({ totalPages, currentPage, setCurrentPage }) {
         {[...Array(totalPages).keys()].map((i) => (
             <button onClick={() => setCurrentPage(i + 1)} style={{ background: 'none', border: 'none' }}>
                 <span
-                    className={"pg-no" + (i == currentPage - 1 ? " pg-active" : "")}>
+                    className={"pg-no" + (i === currentPage - 1 ? " pg-active" : "")}>
                     {i + 1}
                 </span>
             </button>

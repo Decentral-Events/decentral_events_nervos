@@ -5,7 +5,7 @@ const sequelize = new Sequelize(process.env.DB_SCHEMA, process.env.DB_USER, proc
     port: process.env.DB_PORT || 5432,
     dialect: process.env.DB_TYPE || 'postgres',
     dialectOptions: {
-        ssl: process.env.DB_SSL == "true"
+        ssl: process.env.DB_SSL === "true"
     }
 });
 

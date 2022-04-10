@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Paginator from "../../components/Paginator";
 import CancelledEventReservations from "./CancelledEventReservations";
 import CompletedEventReservations from "./CompletedEventReservations";
 import FutureEventReservations from "./FutureEventReservations";

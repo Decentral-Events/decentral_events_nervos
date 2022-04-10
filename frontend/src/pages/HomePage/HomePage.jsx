@@ -1,5 +1,4 @@
 import HeroSection from "./HeroSection";
-import FeaturedEvents from "./FeaturedEvents";
 import StepSection from "./StepSection";
 import FeedbackSection from "./FeedbackSection";
 import CategoriesSection from "./CategoriesSection";

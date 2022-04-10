@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import EventCard from "../../components/EventCard";
 import { getDateTimeString } from "../../helpers";
 
 function DraftEvents() {
@@ -9,7 +8,7 @@ function DraftEvents() {
 
     useEffect(() => {
         (async () => {
-            const { data: { events } } = await axios.get("${window.server}/event?draft=true");
+            const { data: { events } } = await axios.get(`${window.server}/event?draft=true`);
             setEvents(events);
         })()
     }, []);
@@ -24,7 +23,7 @@ function DraftEvents() {
 
             <h1 className="features-head">Draft Events</h1>
         </div>
-        {events.length == 0 && <div style={{ color: "red", fontSize: '1.5rem', padding: '10px 0', textAlign: 'center' }}>No Draft Events Found!!!</div>}
+        {events.length === 0 && <div style={{ color: "red", fontSize: '1.5rem', padding: '10px 0', textAlign: 'center' }}>No Draft Events Found!!!</div>}
         <div className="grid grid-cols-3 gap-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem', marginTop: '25px' }}>
             {events.map(event => (
                 <div key={event.id} className="border-2 p-3 rounded" style={{ fontSize: '1.5rem', border: '2px gray solid', borderRadius: '1rem', padding: '2rem' }}>

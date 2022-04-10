@@ -23,7 +23,7 @@ function CancelledEventReservations() {
             setReservations(reservations);
             setTotalPages(totalPages);
         })();
-    }, [currentPage, auth.token]);
+    }, [currentPage, auth.token, auth.isLoggedIn]);
 
     return <div className="all-events-status-cont">
         {reservations.map(reservation => (

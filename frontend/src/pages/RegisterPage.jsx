@@ -7,11 +7,6 @@ function RegisterPage({ provider }) {
     const [name, setName] = useState("");
     const [image, setImage] = useState();
     const [username, setUsername] = useState("");
-    const [errors, setErrors] = useState({
-        name: "",
-        image: "",
-        username: ""
-    });
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -33,7 +28,7 @@ function RegisterPage({ provider }) {
                 address,
                 signature
             })
-            : await axios.post("${window.server}/auth/register", formData);
+            : await axios.post(`${window.server}/auth/register`, formData);
         auth.setLoginData({
             user,
             signer,
@@ -42,10 +37,6 @@ function RegisterPage({ provider }) {
             expireTimeStamp: 0
         });
         navigate("/");
-    }
-
-    function updateUsername(username) {
-        setUsername(username);
     }
 
     if (auth.isLoggedIn) {

@@ -18,11 +18,10 @@ function Step1({ done }) {
 
     useEffect(() => {
         setEventPlannerContract(new ethers.Contract(EventPlannerContract.address, EventPlannerContract.abi, signer));
-        console.log(eventPlannerContract);
     }, [signer]);
 
     function validate() {
-        return name !== '' && startTime != null && endTime != null && tokensRequired > 0 && validationsRequired >= 1 && maxBookings >= 1;
+        return name !== '' && startTime !== null && endTime !== null && tokensRequired > 0 && validationsRequired >= 1 && maxBookings >= 1;
     }
 
     const isValid = validate();

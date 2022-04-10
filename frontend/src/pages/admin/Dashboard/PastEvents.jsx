@@ -1,18 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Calender from "../../../components/Calender";
 import EventCard from "../../../components/EventCard";
 import Paginator from "../../../components/Paginator";
 
 function PastEvents() {
     const now = new Date();
-    const yesterday = new Date(now.getTime() - 24 * 3600 * 1000);
+    // const yesterday = new Date(now.getTime() - 24 * 3600 * 1000);
     const [selectedDate, setSelectedDate] = useState({ date: now.getDate(), month: now.getMonth(), year: now.getFullYear() });
     const [events, setEvents] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Calender from "../../../components/Calender";
 import FutureEvents from "./FutureEvents";
 import OngoingEvents from "./OngoingEvents";
 import PastEvents from "./PastEvents";

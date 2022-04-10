@@ -7,7 +7,7 @@ export async function onlyAuthorized(req, res, next) {
     if (!authorization) {
         return res.status(400).json({ message: "authorization token not found" });
     }
-    if (!(authorization.startsWith("Bearer") && authorization.split(" ").length == 2)) {
+    if (!(authorization.startsWith("Bearer") && authorization.split(" ").length === 2)) {
         return res.status(400).json({ message: "authorization token is in invalid format" });
     }
     const token = authorization.split(' ')[1];

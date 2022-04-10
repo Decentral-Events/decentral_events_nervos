@@ -81,7 +81,7 @@ contract EventPlanner {
     }
 
     function changeAdminStatus(address user, bool status) public onlyAdmin {
-        require(isAdmin[user] != status, "status already updated");
+        require(isAdmin[user] !== status, "status already updated");
         isAdmin[user] = status;
         emit AdminStatusChange(user, status);
     }
@@ -129,7 +129,7 @@ contract EventPlanner {
             "event already started"
         );
         require(
-            bookingIds[eventId][msg.sender] == 0,
+            bookingIds[eventId][msg.sender] === 0,
             "you have already booked for this event"
         );
         require(
@@ -225,9 +225,9 @@ contract EventPlanner {
             !bookings[bookingId].attended,
             "the attendance is already marked"
         );
-        require(msg.sender != user, "you cannot mark presence for yourself");
+        require(msg.sender !== user, "you cannot mark presence for yourself");
         require(
-            bookingIds[eventId][msg.sender] != 0,
+            bookingIds[eventId][msg.sender] !== 0,
             "you have not booked ticket for this event"
         );
         require(
@@ -245,7 +245,7 @@ contract EventPlanner {
             msg.sender,
             validationsRequired
         );
-        if (validationsRequired == 0) {
+        if (validationsRequired === 0) {
             bookings[bookingId].attended = true;
             emit AttendanceMarked(eventId, bookingId, user);
         }
@@ -255,7 +255,7 @@ contract EventPlanner {
         Event memory currentEvent = getEvent(eventId);
         require(currentEvent.endTime < block.timestamp, "event not ended yet");
         require(
-            tokensBlocked[eventId] != 0,
+            tokensBlocked[eventId] !== 0,
             "no tokens blocked for this event"
         );
         tokenContract.transfer(tresury, tokensBlocked[eventId]);
@@ -274,7 +274,7 @@ contract EventPlanner {
         returns (uint256)
     {
         uint256 bookingId = bookingIds[eventId][user];
-        require(bookingId != 0, "booking for this event not found");
+        require(bookingId !== 0, "booking for this event not found");
         return bookingId;
     }
 }

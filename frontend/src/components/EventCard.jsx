@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { getDateTimeString, getUrl } from '../helpers';
 
 function EventCard({ event, actionButtonText, onActionButtonClick }) {

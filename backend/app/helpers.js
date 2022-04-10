@@ -12,7 +12,7 @@ export function generateNonce() {
     const options = "ABCDEDFGHIJKLMNOPQRSTUVWXYZ";
     let nonce = "";
     for (let i = 0; i < 32; i++) {
-        if (i != 0 && i % 8 == 0) {
+        if (i !== 0 && i % 8 === 0) {
             nonce += "-";
         }
         nonce += options.charAt(Math.floor(Math.random() * options.length));
@@ -27,7 +27,7 @@ export function verifySignature(data, signature, address) {
     } catch (err) {
         return false;
     }
-    return signer.toLowerCase() == address.toLowerCase();
+    return signer.toLowerCase() === address.toLowerCase();
 }
 
 export function generateJWTToken(address) {

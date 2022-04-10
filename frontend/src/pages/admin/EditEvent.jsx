@@ -19,7 +19,7 @@ function EditEvent() {
             setDescription(event.description);
             setName(event.name);
         })()
-    }, []);
+    }, [id]);
 
     function validate() {
         return name !== '' && description !== '';

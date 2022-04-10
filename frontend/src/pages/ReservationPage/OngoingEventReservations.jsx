@@ -23,11 +23,7 @@ function OngoingEventReservations() {
             setReservations(reservations);
             setTotalPages(totalPages);
         })();
-    }, [currentPage, auth.token]);
-
-    function markPresence() {
-
-    }
+    }, [currentPage, auth.token, auth.isLoggedIn]);
 
     return <div className="all-events-status-cont">
         {reservations.map(reservation => (

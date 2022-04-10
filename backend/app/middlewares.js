@@ -7,7 +7,7 @@ export function paginate(defaultLimit = 10) {
         if (!limit) {
             req.query.limit = defaultLimit;
         } else {
-            if (typeof limit == 'string') {
+            if (typeof limit === 'string') {
                 try {
                     req.query.limit = parseInt(limit);
                     if (req.query.limit <= 0) {
@@ -30,7 +30,7 @@ export function paginate(defaultLimit = 10) {
         if (!page) {
             req.query.page = 1;
         } else {
-            if (typeof page == 'string') {
+            if (typeof page === 'string') {
                 try {
                     req.query.page = parseInt(page);
                     if (req.query.page <= 0) {
@@ -78,7 +78,7 @@ export function file(name, type) {
             }
         }
         if (!error) return next();
-        if (typeof req.fileErrors == 'object') {
+        if (typeof req.fileErrors === 'object') {
             req.fileErrors.push(error);
         } else {
             req.fileErrors = [error];
@@ -91,7 +91,7 @@ export function files(name, type, min = 1, max = 5) {
     return (req, res, next) => {
         let error;
         if (!req.files || !req.files[name]) {
-            if (min == 0) {
+            if (min === 0) {
                 if (!req.files)
                     req.files = {};
                 req.files[name] = [];
@@ -104,7 +104,7 @@ export function files(name, type, min = 1, max = 5) {
             };
         } else {
             let files = req.files[name];
-            if (files.length == undefined) {
+            if (files.length === undefined) {
                 req.files[name] = [files];
                 files = req.files[name];
             }
@@ -129,7 +129,7 @@ export function files(name, type, min = 1, max = 5) {
             }
         }
         if (!error) return next();
-        if (typeof req.fileErrors == 'object') {
+        if (typeof req.fileErrors === 'object') {
             req.fileErrors.push(error);
         } else {
             req.fileErrors = [error];

@@ -9,14 +9,14 @@ function Calender({ selectedDate, setSelectedDate, maxToday, minToday }) {
     function decreaseMonth() {
         const [oldMonth, oldYear] = monthAndYear;
         const newMonth = oldMonth ? oldMonth - 1 : 11;
-        const newYear = oldYear - ((oldMonth - 1) == -1 ? 1 : 0)
+        const newYear = oldYear - ((oldMonth - 1) === -1 ? 1 : 0)
         setMonthAndYear([newMonth, newYear]);
     }
 
     function increaseMonth() {
         const [oldMonth, oldYear] = monthAndYear;
         const newMonth = (oldMonth + 1) % 12;
-        const newYear = oldYear + ((oldMonth + 1) == 12 ? 1 : 0)
+        const newYear = oldYear + ((oldMonth + 1) === 12 ? 1 : 0)
         setMonthAndYear([newMonth, newYear]);
     }
 
@@ -31,7 +31,7 @@ function Calender({ selectedDate, setSelectedDate, maxToday, minToday }) {
 
     function getTotalDays() {
         const [month] = monthAndYear;
-        return month == 1 ? 28 : 31 - (month % 2);
+        return month === 1 ? 28 : 31 - (month % 2);
     }
 
     function clicked(date) {
@@ -48,13 +48,13 @@ function Calender({ selectedDate, setSelectedDate, maxToday, minToday }) {
         <div className="al-mt">
             <span className="month-name">{MONTHS[monthAndYear[0]]} &nbsp; {monthAndYear[1]}</span>
         </div>
-        {(!minToday || month != yesterday.getMonth() || year != yesterday.getFullYear()) && <button onClick={decreaseMonth} style={{ border: 'none', background: 'none' }}>
+        {(!minToday || month !== yesterday.getMonth() || year !== yesterday.getFullYear()) && <button onClick={decreaseMonth} style={{ border: 'none', background: 'none' }}>
             <ion-icon
                 class="chevron-icon chevron-icon-left"
                 name="chevron-back-outline"
             ></ion-icon>
         </button>}
-        {(!maxToday || month != yesterday.getMonth() || year != yesterday.getFullYear()) && <button onClick={increaseMonth} style={{ border: 'none', background: 'none' }}>
+        {(!maxToday || month !== yesterday.getMonth() || year !== yesterday.getFullYear()) && <button onClick={increaseMonth} style={{ border: 'none', background: 'none' }}>
             <ion-icon
                 class="chevron-icon chevron-icon-right"
                 name="chevron-forward-outline"
@@ -78,8 +78,8 @@ function Calender({ selectedDate, setSelectedDate, maxToday, minToday }) {
                         {[...Array(7).keys()].map(j => {
                             const day = 7 * i + j + 1 - start;
                             const display = day >= 1 && day <= totalDays;
-                            const selected = day == selectedDate.date && month == selectedDate.month && year == selectedDate.year;
-                            const isInactive = display && ((maxToday && month == yesterday.getMonth() && year == yesterday.getFullYear() && day > now.getDate()) || (minToday && month == now.getMonth() && year == now.getFullYear() && day < now.getDate()));
+                            const selected = day === selectedDate.date && month === selectedDate.month && year === selectedDate.year;
+                            const isInactive = display && ((maxToday && month === yesterday.getMonth() && year === yesterday.getFullYear() && day > now.getDate()) || (minToday && month === now.getMonth() && year === now.getFullYear() && day < now.getDate()));
 
                             return <td
                                 key={j}

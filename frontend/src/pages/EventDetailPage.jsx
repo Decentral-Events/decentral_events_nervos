@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import { AuthContext } from "../context";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import dateFormat from 'dateformat';
 import TokenContract from "../abi/Token.json";
 import EventPlannerContract from "../abi/EventPlanner.json";
 import { getDateTimeString, getUrl } from '../helpers';
@@ -25,7 +24,7 @@ function EventDetailPage() {
             console.log(event);
             setEvent(event);
         })();
-    }, []);
+    }, [eventId]);
 
     useEffect(() => {
         (async () => {
@@ -56,7 +55,7 @@ function EventDetailPage() {
             console.log(isReserved);
             setIsReserved(isReserved);
         })();
-    }, [event, auth.token]);
+    }, [event, auth.token, auth.isLoggedIn]);
 
     async function stake() {
         if (!signer) return;

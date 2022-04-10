@@ -30,7 +30,7 @@ function EventListPage() {
             setTotalPages(totalPages);
             setEvents(events);
         })();
-    }, [selectedDate, search, currentPage]);
+    }, [selectedDate, search, currentPage, searchValue]);
 
     return <main className="event-main">
         <section className="event-manage">

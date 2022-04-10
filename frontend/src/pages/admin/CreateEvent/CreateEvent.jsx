@@ -23,7 +23,7 @@ function CreateEvent() {
                 }
             }
         })()
-    }, []);
+    }, [id, navigate]);
 
     return <div className="container mx-auto px-5 py-12 event-manage">
         <Link to="/admin" className="btn eve-back-btn btn-for-events eve-stake-btn">
@@ -37,10 +37,10 @@ function CreateEvent() {
         </div>
         <div className="w-2/3 mx-auto">
             <div className='tab-header'>
-                <span className={step == 1 ? 'tab tab-active' : 'tab'}>Step 1</span>
-                <span className={step == 2 ? 'tab tab-active' : 'tab'}>Step 2</span>
+                <span className={step === 1 ? 'tab tab-active' : 'tab'}>Step 1</span>
+                <span className={step === 2 ? 'tab tab-active' : 'tab'}>Step 2</span>
             </div>
-            {step == 1 ? <Step1 done={(eventId) => { setStep(2); setEventId(eventId) }} /> : <Step2 eventId={eventId} />}
+            {step === 1 ? <Step1 done={(eventId) => { setStep(2); setEventId(eventId) }} /> : <Step2 eventId={eventId} />}
         </div>
 
     </div>;

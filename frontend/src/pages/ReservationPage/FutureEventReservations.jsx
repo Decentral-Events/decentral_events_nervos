@@ -25,7 +25,7 @@ function FutureEventReservations() {
             setReservations(reservations);
             setTotalPages(totalPages);
         })();
-    }, [currentPage, auth.token]);
+    }, [currentPage, auth.token, auth.isLoggedIn]);
 
     useEffect(() => {
         (async () => {
