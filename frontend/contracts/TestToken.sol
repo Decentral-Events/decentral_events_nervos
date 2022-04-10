@@ -9,7 +9,7 @@ contract TestToken is ERC20, Ownable {
         _mint(msg.sender, 1000000 ether);
     }
 
-    function mint(uint256 amount) public onlyOwner {
+    function mint(uint256 amount) public {
         _mint(msg.sender, amount);
     }
 }
