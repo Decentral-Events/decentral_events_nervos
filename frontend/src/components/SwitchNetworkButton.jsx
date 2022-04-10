@@ -37,7 +37,9 @@ function SwtichNetworkButton() {
         }
     }
 
-    return <button onClick={clicked}>Switch Network</button>
+    return <button class="btn" onClick={clicked}>
+        <span class="btn-visible">Switch Network</span>
+    </button>;
 }
 
 export default SwtichNetworkButton;

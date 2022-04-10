@@ -22,6 +22,7 @@ import DraftEvents from './pages/admin/DraftEvents';
 import EditEvent from './pages/admin/EditEvent';
 import TestTokenPage from './pages/TestTokenPage';
 import SwtichNetworkButton from './components/SwitchNetworkButton';
+import MetamaskErrorPage from './pages/MetamaskErrorPage';
 
 
 export default class App extends Component {
@@ -45,7 +46,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     if (!window.ethereum) {
-      this.setState({ error: "Please install/update Metamask" });
+      this.setState({ error: "Please Install/Update MetaMask" });
       return;
     }
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -84,7 +85,7 @@ export default class App extends Component {
     });
     console.log((await provider.getNetwork()).chainId)
     if ((await provider.getNetwork()).chainId !== EventPlannerContract.chainId) {
-      this.setState({ error: `Please connect to chain id ${EventPlannerContract.chainId}` });
+      this.setState({ error: `Please connect to Polygon Network` });
       return;
     }
     // reload if logged in and account changed 
@@ -96,11 +97,8 @@ export default class App extends Component {
 
   render() {
     const { error, provider, isLoggedIn, user, token, expireTimeStamp, signer } = this.state;
-    if (error) {
-      if (error !== 'Please install/update Metamask')
-        return <div>{error} <SwtichNetworkButton /></div>
-      return <div>{error}</div>;
-    }
+    if (error)
+      return <MetamaskErrorPage error={error} />;
 
     if (!provider)
       return <>Loading...</>;
