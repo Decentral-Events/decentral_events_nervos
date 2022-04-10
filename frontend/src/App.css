@@ -1452,3 +1452,9 @@ h3 {
 .err-footer {
   height: 14vh;
 }
+
+.footer-beautify {
+  height: 0.8rem;
+  width: 100%;
+  background-image: linear-gradient(to right, #7950f2, #5f3dc4);
+}
