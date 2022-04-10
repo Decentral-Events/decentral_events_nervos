@@ -1424,3 +1424,31 @@ h3 {
   background-color: #6741d9 !important;
   color: white !important;
 } */
+
+.err-header {
+  height: 16vh;
+  justify-content: center !important;
+}
+
+.err-display-cont {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.err-1 {
+  color: transparent;
+  font-size: 2rem;
+  display: inline-block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to right, #f03e3e, #c92a2a);
+  font-weight: 500;
+}
+
+.err-footer {
+  height: 14vh;
+}
