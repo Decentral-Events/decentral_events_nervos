@@ -168,7 +168,7 @@ router.delete("/:id/images", async (req, res) => {
     const { id } = req.params;
     const event = await Event.findOne({ where: { id } });
     if (!event) return res.status(404).json({ message: "Event not found" });
-    await EventImage.destroy({ where: { Event_id: id }, individualHooks: true });
+    await EventImage.destroy({ where: { EventId: id }, individualHooks: true });
     res.json({ message: "Images deleted" });
 });
 
