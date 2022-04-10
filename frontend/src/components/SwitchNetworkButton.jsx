@@ -1,5 +1,5 @@
 function SwtichNetworkButton() {
-    function clicked() {
+    async function clicked() {
         if (window.ethereum) {
             try {
                 // check if the chain to connect to is installed
