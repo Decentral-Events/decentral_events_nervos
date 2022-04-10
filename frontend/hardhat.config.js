@@ -29,7 +29,13 @@ module.exports = {
       url: "https://polygon-rpc.com",
       accounts: [process.env.PRIVATE_KEY],
       chainId: 137
+    },
+    maticMumbai: {
+      url: "https://rpc-mumbai.matic.today",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 80001
     }
+
   },
   etherscan: {
     apiKey: process.env.POLYGONSCAN_API_KEY
