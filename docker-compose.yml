@@ -17,6 +17,9 @@ services:
       - postgres
     ports:
       - '8000:8000'
+    volumes:
+      - uploads:/app/uploads
 
 volumes:
   addressbook-db:
+  uploads:
