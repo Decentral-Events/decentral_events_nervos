@@ -78,8 +78,11 @@ function EventDetailPage() {
     const enoughApproved = event && ethers.BigNumber.from(event.tokensRequired).lte(approvedTokens);
     // const enoughApproved = true;
 
-    function openModal() {
+    async function openModal() {
         if (!signer) return alert("Connect with metamask first");
+        const tokens = await tokenContract.balanceOf(signer.address);
+        if (ethers.BigNumber.from(event.tokensRequired).gt(tokens))
+            return alert("You dont have enough balance");
         setShowModal(true);
     }
 
