@@ -80,7 +80,8 @@ function EventDetailPage() {
 
     async function openModal() {
         if (!signer) return alert("Connect with metamask first");
-        const tokens = await tokenContract.balanceOf(signer.address);
+        const address = await signer.getAddress();
+        const tokens = await tokenContract.balanceOf(address);
         if (ethers.BigNumber.from(event.tokensRequired).gt(tokens))
             return alert("You dont have enough balance");
         setShowModal(true);
